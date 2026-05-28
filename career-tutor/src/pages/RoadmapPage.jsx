@@ -100,7 +100,7 @@ export default function RoadmapPage() {
             )}
           </Section>
         )}
-        console.log("ROADMAP DATA:", roadmap)
+
         {/* Roadmap */}
         {roadmap && (
           <Section icon={BookOpen} title="Learning Roadmap">

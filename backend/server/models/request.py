@@ -1,23 +1,23 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Any
 
 
 class ChatRequest(BaseModel):
-    session_id: str          #unique tabs 
-    message: str             #latest message sent
+    session_id: str
+    message: str
 
 
 class ChatResponse(BaseModel):
     session_id: str
-    reply: str               # geminireply 
-    phase: str               # "interview" | "roadmap" | "followup"
-    profile_complete: bool   # True once all 6 fields are collected
+    reply: str
+    phase: str
+    profile_complete: bool
 
 
 class RoadmapRequest(BaseModel):
-    session_id: str          # must already have a completed profile in session
+    session_id: str
 
 
 class RoadmapResponse(BaseModel):
     session_id: str
-    roadmap: dict            #JSON roadmap
+    roadmap: dict[str, Any]   # ✅ typed generic dict, fixes "Missing type argument"
