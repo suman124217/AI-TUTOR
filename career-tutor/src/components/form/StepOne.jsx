@@ -17,36 +17,44 @@ export default function StepOne({ data, onChange, onNext }) {
   }
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-1">What's your target role?</h2>
-      <p className="text-gray-500 mb-6">Tell us what career you're aiming for.</p>
+    <div className="space-y-6 pt-4">
+      <div>
+        <h2 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">What's your target role?</h2>
+        <p className="text-slate-500 text-lg">Tell us what career you're aiming for.</p>
+      </div>
 
       <input
         type="text"
         placeholder="e.g. Frontend Developer, Data Scientist..."
         value={value}
         onChange={e => setValue(e.target.value)}
-        className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
+        className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 text-slate-900 text-lg focus:outline-none focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all shadow-sm"
       />
 
-      <p className="text-xs text-gray-400 mb-3 uppercase tracking-wide font-semibold">Popular roles</p>
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div>
+        <p className="text-xs text-slate-400 mb-4 uppercase tracking-wider font-bold">Popular roles</p>
+        <div className="flex flex-wrap gap-2.5">
         {popularRoles.map(role => (
           <button
             key={role}
             onClick={() => setValue(role)}
-            className={`px-3 py-1.5 rounded-full text-sm border transition-all ${
+            className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 ${
               value === role
-                ? 'bg-indigo-600 text-white border-indigo-600'
-                : 'border-gray-200 text-gray-600 hover:border-indigo-400 hover:text-indigo-600'
+                ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200'
+                : 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700'
             }`}
           >
             {role}
           </button>
         ))}
       </div>
+      </div>
 
-      <Button onClick={handleNext} className="w-full">Continue →</Button>
+      <div className="pt-4">
+        <Button onClick={handleNext} className="w-full py-4 text-lg shadow-lg shadow-indigo-200 hover:shadow-indigo-300 transition-all">
+          Continue →
+        </Button>
+      </div>
     </div>
   )
 }

@@ -14,8 +14,8 @@ export default function StepTwo({ data, onChange, onNext, onBack }) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-1">Your background</h2>
-      <p className="text-gray-500 mb-6">This helps us tailor the roadmap to your situation.</p>
+      <h2 className="text-2xl font-bold text-slate-900 mb-1">Your background</h2>
+      <p className="text-slate-600 mb-6">This helps us tailor the roadmap to your situation.</p>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         {[
@@ -25,28 +25,28 @@ export default function StepTwo({ data, onChange, onNext, onBack }) {
           <button
             key={value}
             onClick={() => setBackground(value)}
-            className={`p-4 rounded-xl border-2 text-left transition-all ${
+            className={`p-4 rounded-xl border-2 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
               background === value
-                ? 'border-indigo-600 bg-indigo-50'
-                : 'border-gray-200 hover:border-gray-300'
+                ? 'border-indigo-500 bg-indigo-50/80 backdrop-blur-sm shadow-md'
+                : 'border-white/60 bg-white/40 backdrop-blur-sm hover:border-indigo-200 hover:bg-white/80'
             }`}
           >
-            <Icon className={`mb-2 ${background === value ? 'text-indigo-600' : 'text-gray-400'}`} size={24} />
-            <div className="font-semibold text-gray-900 text-sm">{label}</div>
-            <div className="text-xs text-gray-500">{desc}</div>
+            <Icon className={`mb-2 transition-colors ${background === value ? 'text-indigo-600' : 'text-slate-400'}`} size={24} />
+            <div className="font-semibold text-slate-900 text-sm">{label}</div>
+            <div className="text-xs text-slate-500">{desc}</div>
           </button>
         ))}
       </div>
 
       {background === 'professional' && (
         <div className="mb-6">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Your current job role</label>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Your current job role</label>
           <input
             type="text"
             placeholder="e.g. Marketing Manager, Teacher..."
             value={currentRole}
             onChange={e => setCurrentRole(e.target.value)}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full border border-white/80 bg-white/60 backdrop-blur-sm text-slate-900 placeholder-slate-400 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white/90 hover:bg-white/80 transition-all duration-300 shadow-sm"
           />
         </div>
       )}

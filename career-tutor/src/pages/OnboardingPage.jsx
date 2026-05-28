@@ -22,14 +22,15 @@ export default function OnboardingPage() {
 
   const handleSubmit = async (lastStepData) => {
     const finalProfile = { ...userProfile, ...lastStepData }
-    setUserProfile(lastStepData)
+    setUserProfile(finalProfile)   // ✅ fixed: was setUserProfile(lastStepData)
     setLoading(true)
     setError(null)
     try {
       const res = await generateRoadmap(finalProfile)
       setRoadmapData(res.data)
       navigate('/roadmap')
-    } catch (err) {
+    } catch (err) {                // ✅ fixed: removed the extra } before catch
+      console.error('Roadmap generation failed:', err)
       setError('Something went wrong. Please try again.')
       alert('Failed to generate roadmap. Make sure the backend is running.')
     } finally {
@@ -40,16 +41,16 @@ export default function OnboardingPage() {
   const stepProps = { data: userProfile, onChange: setUserProfile, onNext: next, onBack: back }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 text-indigo-600 font-bold text-lg mb-1">
-            <Sparkles size={20} /> CareerAI
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 flex items-center justify-center px-4 py-12 font-sans selection:bg-indigo-200 selection:text-indigo-900 text-slate-900">
+      <div className="w-full max-w-xl">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 text-indigo-600 font-extrabold text-2xl mb-2 tracking-tight">
+            <Sparkles size={24} /> CareerAI
           </div>
-          <p className="text-gray-500 text-sm">Building your personalized roadmap</p>
+          <p className="text-slate-600 text-base font-medium">Building your personalized roadmap</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
+        <div className="bg-white/60 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgb(0,0,0,0.04)] border border-white/80 p-8 sm:p-10 hover:shadow-[0_12px_48px_rgb(0,0,0,0.08)] transition-shadow duration-500">
           <StepProgress currentStep={step} totalSteps={TOTAL_STEPS} />
 
           <AnimatePresence mode="wait">

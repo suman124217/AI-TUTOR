@@ -3,11 +3,11 @@ import Button from '../ui/Button'
 
 const timeOptions = ['30 mins/day', '1 hour/day', '2 hours/day', '3+ hours/day', 'Weekends only']
 const goalOptions = [
-  { value: 'job', label: '💼 Get a Job' },
-  { value: 'internship', label: '🎓 Get an Internship' },
-  { value: 'freelancing', label: '💻 Freelancing' },
-  { value: 'career-switch', label: '🔄 Career Switch' },
-  { value: 'startup', label: '🚀 Start a Startup' },
+  { value: 'job', label: 'Get a Job' },
+  { value: 'internship', label: 'Get an Internship' },
+  { value: 'freelancing', label: 'Freelancing' },
+  { value: 'career-switch', label: 'Career Switch' },
+  { value: 'startup', label: 'Start a Startup' },
 ]
 
 export default function StepFour({ data, onChange, onSubmit, onBack, isLoading }) {
