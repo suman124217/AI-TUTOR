@@ -13,7 +13,7 @@ def get_or_create_session(session_id: str) -> dict:
 
     Session structure:
     {
-        "messages":        [],        # full conversation history sent to Claude
+        "messages":        [],        # full conversation history sent to gemini
         "profile":         None,      # filled once interview phase completes
         "phase":           "interview",  # interview → roadmap → followup
         "profile_complete": False,    # flips True when [PROFILE_COMPLETE] tag seen

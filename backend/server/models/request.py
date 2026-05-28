@@ -9,7 +9,7 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     session_id: str
-    reply: str               # Claude reply 
+    reply: str               # geminireply 
     phase: str               # "interview" | "roadmap" | "followup"
     profile_complete: bool   # True once all 6 fields are collected
 

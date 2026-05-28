@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from models.request import RoadmapRequest
 from services.session import get_session, set_phase
-from services.claude import call_claude, extract_json_from_response
+from services.gemini import call_gemini, extract_json_from_response
 from prompts.roadmap import ROADMAP_PROMPT
 
 router = APIRouter()
@@ -30,7 +30,7 @@ async def generate_roadmap(body: RoadmapRequest):
             detail="Profile data missing. Something went wrong during the interview phase."
         )
 
-    #passing convo to claude
+    #passing convo to gemini
     #explicitly inject the profile JSON
     import json
     profile_injection = {
@@ -44,10 +44,10 @@ async def generate_roadmap(body: RoadmapRequest):
 
     messages_with_profile = session["messages"] + [profile_injection]
 
-    # Call Claude 
-    raw_response = call_claude(ROADMAP_PROMPT, messages_with_profile)
+    # Call  
+    raw_response = call_gemini(ROADMAP_PROMPT, messages_with_profile)
 
-    # Parse the JSON roadmap out of Claude's response
+    # Parse the JSON roadmap out of gemini's response
     try:
         roadmap_json = extract_json_from_response(raw_response)
     except ValueError as e:
@@ -67,7 +67,7 @@ async def generate_roadmap(body: RoadmapRequest):
     session["roadmap"] = roadmap_json
     set_phase(body.session_id, "followup")
 
-    # Add a note to conversation history so Claude remembers the roadmap was delivered
+    # Add a note to conversation history so gemini remembers the roadmap was delivered
     session["messages"].append({
         "role": "assistant",
         "content": f"I've generated your personalized roadmap. {summary}"
