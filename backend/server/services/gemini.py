@@ -3,10 +3,15 @@ import json
 from typing import AsyncGenerator
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 
 #Client 
 
-client = genai.Client()
+load_dotenv()
+
+api_key = os.getenv("GEMINI_API_KEY")
+
+client = genai.Client(api_key=api_key)
 
 # Recommended model for general text and reasoning tasks
 MODEL = "gemini-2.5-flash" 
